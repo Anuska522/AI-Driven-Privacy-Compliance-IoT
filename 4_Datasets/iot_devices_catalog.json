@@ -1,0 +1,90 @@
+[
+  {
+    "device_id": "DEV-HEALTH-001",
+    "device_type": "wearable_biometric",
+    "model": "CardioPulse-X2",
+    "owner": "City Hospital Cardiology Dept",
+    "firmware_version": "v2.4.1",
+    "supported_data_classes": [
+      "sensitive_personal",
+      "personal"
+    ],
+    "status": "ACTIVE",
+    "registered_at": "2026-10-20T06:36:01.230942+00:00",
+    "last_verified_at": null,
+    "revocation_reason": null
+  },
+  {
+    "device_id": "DEV-CITY-042",
+    "device_type": "traffic_camera",
+    "model": "VisionFlow-4K",
+    "owner": "Municipal Transport Authority",
+    "firmware_version": "v1.8.0",
+    "supported_data_classes": [
+      "public",
+      "personal"
+    ],
+    "status": "ACTIVE",
+    "registered_at": "2026-10-20T06:36:01.230983+00:00",
+    "last_verified_at": null,
+    "revocation_reason": null
+  },
+  {
+    "device_id": "DEV-IND-881",
+    "device_type": "vibration_sensor",
+    "model": "VibraSense-Pro",
+    "owner": "Apex Precision Manufacturing",
+    "firmware_version": "v3.1.2",
+    "supported_data_classes": [
+      "operational"
+    ],
+    "status": "ACTIVE",
+    "registered_at": "2026-10-20T06:36:01.230992+00:00",
+    "last_verified_at": null,
+    "revocation_reason": null
+  },
+  {
+    "device_id": "DEV-ENERGY-303",
+    "device_type": "smart_meter",
+    "model": "GridWatts-500",
+    "owner": "State Power Distribution",
+    "firmware_version": "v2.0.4",
+    "supported_data_classes": [
+      "operational",
+      "personal"
+    ],
+    "status": "ACTIVE",
+    "registered_at": "2026-10-20T06:36:01.230998+00:00",
+    "last_verified_at": null,
+    "revocation_reason": null
+  },
+  {
+    "device_id": "DEV-LOG-512",
+    "device_type": "gps_tracker",
+    "model": "FleetTrack-G8",
+    "owner": "TransGlobal Logistics",
+    "firmware_version": "v1.2.0",
+    "supported_data_classes": [
+      "personal",
+      "operational"
+    ],
+    "status": "ACTIVE",
+    "registered_at": "2026-10-20T06:36:01.231003+00:00",
+    "last_verified_at": null,
+    "revocation_reason": null
+  },
+  {
+    "device_id": "DEV-REVOKED-999",
+    "device_type": "wearable_biometric",
+    "model": "OldPulse-V1",
+    "owner": "Compromised Clinic Node",
+    "firmware_version": "v0.9.8-unsupported",
+    "supported_data_classes": [
+      "sensitive_personal"
+    ],
+    "status": "REVOKED",
+    "registered_at": "2026-10-20T06:36:01.231024+00:00",
+    "last_verified_at": null,
+    "revocation_reason": "Compromised private key detected in audit trace"
+  }
+]

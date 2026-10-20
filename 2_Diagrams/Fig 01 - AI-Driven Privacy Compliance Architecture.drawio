@@ -1,0 +1,60 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="arch-diagram" name="AI-Driven Privacy Compliance Architecture">
+    <mxGraphModel dx="1000" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- IoT Sources -->
+        <mxCell id="sources" value="IoT SOURCES&#xa;wearables • sensors • cameras • meters • industrial devices" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="250" y="40" width="500" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Secure Gateway -->
+        <mxCell id="gateway" value="SECURE GATEWAY&#xa;identity • schema validation • source and purpose metadata" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="250" y="130" width="500" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Edge Privacy Controls -->
+        <mxCell id="edge" value="EDGE PRIVACY CONTROLS&#xa;data labels • minimisation • local policy • retention check" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="250" y="220" width="500" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- AI Risk Engine -->
+        <mxCell id="risk" value="AI RISK ENGINE&#xa;anomaly score • reasons • uncertainty" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="200" y="320" width="280" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Policy Engine -->
+        <mxCell id="policy" value="POLICY ENGINE&#xa;mandatory rules • purpose • receiver • expiry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="520" y="320" width="280" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Decision + Governance -->
+        <mxCell id="decision" value="DECISION + GOVERNANCE&#xa;allow • minimise • transform • block • human review • audit record" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="250" y="420" width="500" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Connectors -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="sources" target="gateway">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gateway" target="edge">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="edge" target="risk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="edge" target="policy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="risk" target="decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="policy" target="decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

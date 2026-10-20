@@ -1,0 +1,73 @@
+﻿================================================================================
+   AI-DRIVEN PRIVACY COMPLIANCE IN HETEROGENEOUS IoT ENVIRONMENTS
+   BCSE318L Data Privacy - Vellore Institute of Technology (VIT)
+   Student: Anuska Saha | Reg No: 23BCE0167 | Team ID: 26FSDPYCPMID1029
+   Course Faculty: Dr M Rajasekhara Babu
+================================================================================
+
+[>>>] Scenario 1: Authorized Smart Healthcare Telemetry (Case D-01)
+      Device: DEV-HEALTH-001 | Class: sensitive_personal | Purpose: patient_remote_monitoring | Receiver: HOSPITAL_CORE_EHR
+      Raw Payload Ingested: {"heart_rate": 82, "patient_name": "Aarav Sharma", "latitude": 12.971598, "longitude": 79.158521, "raw_ecg_waveform": [0.12, 0.45, 1.25, -0.32, 0.05]}
+      [RESULT] ==> [PASS] ALLOWED
+      Execution State: EventState.LOGGED
+      Explanation: Event verified and cleared for dispatch.
+      AI Risk Score: 45.5/100 [MEDIUM RISK]
+        -> Formula: 100 * (0.40 * 0.9 + 0.35 * 0.2 + 0.25 * 0.1)
+        -> Breakdown: Impact=36.0 pts, Likelihood=7.0 pts, Uncertainty=2.5 pts
+      Edge Minimisation Applied:
+        * pseudonymized_patient_name
+        * reduced_raw_ecg_to_summary
+        * reduced_gps_precision_2_decimals
+      Clean Payload Egress: {"heart_rate": 82, "latitude": 12.97, "longitude": 79.16, "patient_pseudo_id": "PSEUDO-9EFA2A8B55E5", "avg_ecg_amplitude": 0.31}
+      Immutable Audit Hash: 48fab0b429b4d46925c2db1c...
+      Pipeline Latency: 0.987 ms
+
+[>>>] Scenario 2: Malicious / Revoked IoT Device Ingestion (Case D-02)
+      Device: DEV-REVOKED-999 | Class: sensitive_personal | Purpose: patient_remote_monitoring | Receiver: HOSPITAL_CORE_EHR
+      [RESULT] ==> [BLOCKED] REJECT
+      Execution State: EventState.REJECTED_INVALID_DEVICE
+      Explanation: Device 'DEV-REVOKED-999' status is DeviceStatus.REVOKED. Rejection enforced.
+      Immutable Audit Hash: c7c14161d5ba7b1518b2aec8...
+      Pipeline Latency: 0.194 ms
+
+[>>>] Scenario 3: Missing Purpose Metadata (Case D-03)
+      Device: DEV-HEALTH-001 | Class: sensitive_personal | Purpose:  | Receiver: HOSPITAL_CORE_EHR
+      [RESULT] ==> [BLOCKED] HOLD
+      Execution State: EventState.HELD_MISSING_PURPOSE
+      Explanation: Required purpose metadata missing from event payload.
+      Immutable Audit Hash: 8800b9e2555f7c3ea696788b...
+      Pipeline Latency: 0.191 ms
+
+[>>>] Scenario 4: Unapproved Commercial Analytics Egress (Case D-04)
+      Device: DEV-HEALTH-001 | Class: sensitive_personal | Purpose: patient_remote_monitoring | Receiver: THIRD_PARTY_ANALYTICS_CO
+      [RESULT] ==> [BLOCKED] BLOCK
+      Execution State: EventState.BLOCKED_RECEIVER
+      Explanation: Receiver 'THIRD_PARTY_ANALYTICS_CO' is not in the approved receiver whitelist.
+      Immutable Audit Hash: b1260cfedcc5e81812f070ee...
+      Pipeline Latency: 0.286 ms
+
+[>>>] Scenario 5: Smart City Traffic Camera Data Minimisation (Case D-12)
+      Device: DEV-CITY-042 | Class: personal | Purpose: traffic_flow_optimization | Receiver: CITY_TRAFFIC_CONTROL
+      Raw Payload Ingested: {"raw_image_frame": "<BASE64_4K_SURVEILLANCE_IMAGE_DATA>", "detected_objects_count": 34, "latitude": 13.08268, "longitude": 80.270718}
+      [RESULT] ==> [PASS] ALLOWED
+      Execution State: EventState.LOGGED
+      Explanation: Event verified and cleared for dispatch.
+      AI Risk Score: 33.5/100 [LOW RISK]
+        -> Formula: 100 * (0.40 * 0.6 + 0.35 * 0.2 + 0.25 * 0.1)
+        -> Breakdown: Impact=24.0 pts, Likelihood=7.0 pts, Uncertainty=2.5 pts
+      Edge Minimisation Applied:
+        * discarded_raw_camera_frame_retained_count
+        * reduced_gps_precision_2_decimals
+      Clean Payload Egress: {"detected_objects_count": 34, "latitude": 13.08, "longitude": 80.27, "vehicle_count": 34}
+      Immutable Audit Hash: b4fb46310b1dd19f7b04b83a...
+      Pipeline Latency: 0.835 ms
+
+================================================================================
+ [OK] Cryptographic Tamper-Evidence Verification:
+     Audit Ledger Integrity: VALID (Zero Tampering Detected)
+     Total Audited Blocks: 5
+================================================================================
+
+Demo execution complete. For comprehensive benchmarks run: python benchmark/run_experiments.py
+To launch the interactive Web Dashboard run: streamlit run dashboard/app.py
+

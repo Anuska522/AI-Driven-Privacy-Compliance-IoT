@@ -1,0 +1,132 @@
+[
+  {
+    "test_id": "D-01",
+    "name": "Valid device and approved receiver",
+    "device_id": "DEV-HEALTH-001",
+    "data_class": "sensitive_personal",
+    "purpose_id": "patient_remote_monitoring",
+    "receiver_id": "HOSPITAL_CORE_EHR",
+    "expected_action": "allow",
+    "expected_status": "CONFIRMED_ALLOWED",
+    "description": "Standard authorized tele-health stream passing all checks."
+  },
+  {
+    "test_id": "D-02",
+    "name": "Revoked device identity",
+    "device_id": "DEV-REVOKED-999",
+    "data_class": "sensitive_personal",
+    "purpose_id": "patient_remote_monitoring",
+    "receiver_id": "HOSPITAL_CORE_EHR",
+    "expected_action": "reject",
+    "expected_status": "CONFIRMED_REJECTED",
+    "description": "Compromised device certificate detected; rejected at perimeter."
+  },
+  {
+    "test_id": "D-03",
+    "name": "Missing declared purpose",
+    "device_id": "DEV-HEALTH-001",
+    "data_class": "sensitive_personal",
+    "purpose_id": null,
+    "receiver_id": "HOSPITAL_CORE_EHR",
+    "expected_action": "hold",
+    "expected_status": "CONFIRMED_HELD",
+    "description": "Missing purpose metadata holds the transfer for review."
+  },
+  {
+    "test_id": "D-04",
+    "name": "Unapproved third-party destination",
+    "device_id": "DEV-HEALTH-001",
+    "data_class": "sensitive_personal",
+    "purpose_id": "patient_remote_monitoring",
+    "receiver_id": "THIRD_PARTY_ANALYTICS_CO",
+    "expected_action": "block",
+    "expected_status": "CONFIRMED_BLOCKED",
+    "description": "Receiver not on whitelist violates purpose limitation; blocked."
+  },
+  {
+    "test_id": "D-05",
+    "name": "Expired retention limit",
+    "device_id": "DEV-HEALTH-001",
+    "data_class": "sensitive_personal",
+    "purpose_id": "patient_remote_monitoring",
+    "receiver_id": "HOSPITAL_CORE_EHR",
+    "event_time": "2026-08-01T00:00:00Z",
+    "expected_action": "quarantine",
+    "expected_status": "CONFIRMED_QUARANTINE",
+    "description": "Stale historical record exceeds 14-day healthcare retention window."
+  },
+  {
+    "test_id": "D-06",
+    "name": "Unusual high-frequency data burst",
+    "device_id": "DEV-CITY-042",
+    "data_class": "personal",
+    "purpose_id": "traffic_flow_optimization",
+    "receiver_id": "CITY_TRAFFIC_CONTROL",
+    "payload": {
+      "burst_rate_hz": 75
+    },
+    "expected_action": "review",
+    "expected_status": "HELD_FOR_HUMAN_REVIEW",
+    "description": "Abnormal burst rate triggers high likelihood score, routing to human reviewer."
+  },
+  {
+    "test_id": "D-07",
+    "name": "AI Model service timeout / outage",
+    "device_id": "DEV-IND-881",
+    "data_class": "operational",
+    "purpose_id": "predictive_maintenance",
+    "receiver_id": "FACTORY_MAINTENANCE_HQ",
+    "simulate_model_outage": true,
+    "expected_action": "allow",
+    "expected_status": "CONFIRMED_ALLOWED",
+    "description": "Mandatory rules pass independently even when AI risk scorer is offline."
+  },
+  {
+    "test_id": "D-08",
+    "name": "Policy server offline with valid signed local cache",
+    "device_id": "DEV-IND-881",
+    "data_class": "operational",
+    "purpose_id": "predictive_maintenance",
+    "receiver_id": "FACTORY_MAINTENANCE_HQ",
+    "expected_action": "allow",
+    "expected_status": "CONFIRMED_ALLOWED",
+    "description": "Edge node executes locally cached signed policy version during disconnection."
+  },
+  {
+    "test_id": "D-09",
+    "name": "Policy server offline with expired local policy",
+    "device_id": "DEV-HEALTH-001",
+    "data_class": "sensitive_personal",
+    "simulate_policy_outage": true,
+    "expected_action": "hold",
+    "expected_status": "CONFIRMED_HELD",
+    "description": "Fail-closed principle halts sensitive egress when no valid policy can be verified."
+  },
+  {
+    "test_id": "D-11",
+    "name": "Malformed schema missing required identifiers",
+    "device_id": "",
+    "event_id": "",
+    "data_class": "unknown",
+    "expected_action": "reject",
+    "expected_status": "CONFIRMED_REJECTED",
+    "description": "Perimeter drops unidentifiable frame before internal queue processing."
+  },
+  {
+    "test_id": "D-12",
+    "name": "Successful edge minimisation and transformation",
+    "device_id": "DEV-CITY-042",
+    "data_class": "personal",
+    "purpose_id": "traffic_flow_optimization",
+    "receiver_id": "CITY_TRAFFIC_CONTROL",
+    "payload": {
+      "raw_image_frame": "<bytes>",
+      "detected_objects_count": 22,
+      "latitude": 13.082711,
+      "longitude": 80.270722
+    },
+    "expected_action": "allow",
+    "expected_status": "CONFIRMED_ALLOWED",
+    "description": "Edge node strips 4K camera frames, retains aggregate count, and rounds GPS to 2 decimal places."
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "policy_id": "POL-HEALTH-01",
+    "version": "1.0",
+    "owner": "Chief Medical Privacy Officer",
+    "jurisdiction": "DPDP_2023 / HIPAA",
+    "effective_at": "2026-01-01T00:00:00Z",
+    "expires_at": "2027-01-01T00:00:00Z",
+    "signature_valid": true,
+    "data_class": "sensitive_personal",
+    "allowed_purposes": [
+      "patient_remote_monitoring",
+      "emergency_triage",
+      "cardiac_telemetry"
+    ],
+    "allowed_receivers": [
+      "HOSPITAL_CORE_EHR",
+      "CARDIOLOGY_ICU_SERVICE"
+    ],
+    "forbidden_receivers": [
+      "THIRD_PARTY_ANALYTICS_CO",
+      "COMMERCIAL_BROKER",
+      "AD_NETWORK"
+    ],
+    "max_retention_days": 14,
+    "requires_minimisation": true,
+    "requires_human_review_above_risk": 70.0
+  },
+  {
+    "policy_id": "POL-CITY-01",
+    "version": "1.0",
+    "owner": "Municipal Data Protection Officer",
+    "jurisdiction": "GDPR / DPDP",
+    "effective_at": "2026-01-01T00:00:00Z",
+    "expires_at": "2027-01-01T00:00:00Z",
+    "signature_valid": true,
+    "data_class": "personal",
+    "allowed_purposes": [
+      "traffic_flow_optimization",
+      "congestion_analysis",
+      "emergency_routing"
+    ],
+    "allowed_receivers": [
+      "CITY_TRAFFIC_CONTROL",
+      "URBAN_PLANNING_PORTAL"
+    ],
+    "forbidden_receivers": [
+      "FACIAL_SURVEILLANCE_DB",
+      "COMMERCIAL_INSURANCE"
+    ],
+    "max_retention_days": 7,
+    "requires_minimisation": true,
+    "requires_human_review_above_risk": 70.0
+  },
+  {
+    "policy_id": "POL-IND-01",
+    "version": "1.0",
+    "owner": "Industrial Security Lead",
+    "jurisdiction": "Enterprise Security Standard",
+    "effective_at": "2026-01-01T00:00:00Z",
+    "expires_at": "2027-01-01T00:00:00Z",
+    "signature_valid": true,
+    "data_class": "operational",
+    "allowed_purposes": [
+      "predictive_maintenance",
+      "machine_telemetry",
+      "safety_shutdown"
+    ],
+    "allowed_receivers": [
+      "FACTORY_MAINTENANCE_HQ",
+      "SCADA_EDGE_SERVER"
+    ],
+    "forbidden_receivers": [
+      "PUBLIC_CLOUD_UNENCRYPTED"
+    ],
+    "max_retention_days": 90,
+    "requires_minimisation": false,
+    "requires_human_review_above_risk": 80.0
+  },
+  {
+    "policy_id": "POL-PUBLIC-01",
+    "version": "1.0",
+    "owner": "Open Data Trustee",
+    "jurisdiction": "Public Domain",
+    "effective_at": "2026-01-01T00:00:00Z",
+    "expires_at": "2028-01-01T00:00:00Z",
+    "signature_valid": true,
+    "data_class": "public",
+    "allowed_purposes": [
+      "environmental_monitoring",
+      "public_weather_broadcast"
+    ],
+    "allowed_receivers": [
+      "OPEN_METEO_HUB",
+      "CITY_DASHBOARD"
+    ],
+    "forbidden_receivers": [],
+    "max_retention_days": 365,
+    "requires_minimisation": false,
+    "requires_human_review_above_risk": 85.0
+  }
+]
